@@ -1,0 +1,14 @@
+digraph KDTree {
+  node [shape=box, fontname="Helvetica"];
+  n0 [label="(5, 5)\n eix=x"];
+  n0 -> n1 [label="L"];
+  n1 [label="(2, 7)\n eix=y"];
+  n1 -> n2 [label="L"];
+  n2 [label="(3, 2)\n eix=x"];
+  n0 -> n3 [label="R"];
+  n3 [label="(8, 3)\n eix=y"];
+  n3 -> n4 [label="R"];
+  n4 [label="(7, 8)\n eix=x"];
+  n4 -> n5 [label="R"];
+  n5 [label="(9, 6)\n eix=y"];
+}

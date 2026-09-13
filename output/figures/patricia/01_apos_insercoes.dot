@@ -1,0 +1,11 @@
+digraph Patricia {
+  rankdir=TB;
+  node [fontname="Helvetica"];
+  n0 [label="ε", shape=circle];
+  n0 -> n1 [label="cas"];
+  n1 [label="", shape=circle];
+  n1 -> n2 [label="a"];
+  n2 [label="", shape=doublecircle];
+  n1 -> n3 [label="o"];
+  n3 [label="", shape=doublecircle];
+}

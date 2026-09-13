@@ -1,0 +1,10 @@
+digraph Treap {
+  node [shape=box, fontname="Helvetica"];
+  n0 [label="20\n p=0.30"];
+  n0 -> n1 [label="L"];
+  n1 [label="10\n p=0.20"];
+  n0 -> n2 [label="R"];
+  n2 [label="30\n p=0.25"];
+  n2 -> n3 [label="R"];
+  n3 [label="40\n p=0.10"];
+}

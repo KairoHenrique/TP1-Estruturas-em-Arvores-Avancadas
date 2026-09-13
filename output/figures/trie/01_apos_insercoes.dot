@@ -1,0 +1,25 @@
+digraph Trie {
+  rankdir=TB;
+  node [fontname="Helvetica"];
+  n0 [label="ε", shape=circle];
+  n0 -> n1 [label="c"];
+  n1 [label="", shape=circle];
+  n1 -> n2 [label="a"];
+  n2 [label="", shape=circle];
+  n2 -> n3 [label="m"];
+  n3 [label="", shape=circle];
+  n3 -> n4 [label="a"];
+  n4 [label="", shape=doublecircle];
+  n2 -> n5 [label="r"];
+  n5 [label="", shape=circle];
+  n5 -> n6 [label="r"];
+  n6 [label="", shape=circle];
+  n6 -> n7 [label="o"];
+  n7 [label="", shape=doublecircle];
+  n2 -> n8 [label="s"];
+  n8 [label="", shape=circle];
+  n8 -> n9 [label="a"];
+  n9 [label="", shape=doublecircle];
+  n8 -> n10 [label="o"];
+  n10 [label="", shape=doublecircle];
+}

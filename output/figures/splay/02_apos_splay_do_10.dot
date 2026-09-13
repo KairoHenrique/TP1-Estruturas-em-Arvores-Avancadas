@@ -1,0 +1,12 @@
+digraph Splay {
+  node [shape=circle, fontname="Helvetica"];
+  n0 [label="10"];
+  n0 -> n1 [label="R"];
+  n1 [label="40"];
+  n1 -> n2 [label="L"];
+  n2 [label="20"];
+  n2 -> n3 [label="R"];
+  n3 [label="30"];
+  n1 -> n4 [label="R"];
+  n4 [label="50"];
+}

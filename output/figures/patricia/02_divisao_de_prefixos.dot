@@ -1,0 +1,17 @@
+digraph Patricia {
+  rankdir=TB;
+  node [fontname="Helvetica"];
+  n0 [label="ε", shape=circle];
+  n0 -> n1 [label="ca"];
+  n1 [label="", shape=circle];
+  n1 -> n2 [label="ma"];
+  n2 [label="", shape=doublecircle];
+  n1 -> n3 [label="rro"];
+  n3 [label="", shape=doublecircle];
+  n1 -> n4 [label="s"];
+  n4 [label="", shape=circle];
+  n4 -> n5 [label="a"];
+  n5 [label="", shape=doublecircle];
+  n4 -> n6 [label="o"];
+  n6 [label="", shape=doublecircle];
+}
