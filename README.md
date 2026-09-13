@@ -49,14 +49,17 @@ n em {1000, 5000, 10000}, semente `20260919`.
 
 ## Estrutura geral do projeto
 
-Cada pasta tem **um papel claro**: código em `src/`, figuras didáticas em `output/figures/` e medição em `experiments/`.
+Cada pasta tem **um papel claro**: código em `src/`, figuras didáticas em `output/figures/`, medição em `experiments/` e o PDF do relatório em `report/`.
 
 ```
 TP1-Estruturas-em-Arvores-Avancadas/
 ├── README.md
 ├── requirements.txt
+├── run.sh                         # sanity + demos + experimentos (Linux)
 ├── src/
-│   ├── common/metrics.py          # comparações, rotações, nós, cronômetro
+│   ├── common/
+│   │   ├── metrics.py             # comparações, rotações, nós, cronômetro
+│   │   └── mpl_backend.py         # matplotlib Agg (sem display)
 │   ├── trie/trie.py
 │   ├── patricia/patricia.py
 │   ├── splay/splay.py
@@ -74,6 +77,8 @@ TP1-Estruturas-em-Arvores-Avancadas/
 ├── output/
 │   ├── figures/                   # PNGs e DOTs dos demos
 │   └── experiments/               # resultados.csv + gráficos matplotlib
+└── report/
+    └── Relatorio.pdf              # relatório 8–12 páginas (só o PDF)
 ```
 
 ## Implementação
