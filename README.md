@@ -78,7 +78,7 @@ TP1-Estruturas-em-Arvores-Avancadas/
 │   ├── figures/                   # PNGs e DOTs dos demos
 │   └── experiments/               # resultados.csv + gráficos matplotlib
 └── report/
-    └── Relatorio.pdf              # relatório 8–12 páginas (só o PDF)
+    └── Relatorio.pdf              # relatório
 ```
 
 ## Implementação
