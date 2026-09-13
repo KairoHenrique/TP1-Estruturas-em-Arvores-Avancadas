@@ -36,6 +36,9 @@ def _render_with_dot_binary(dot_path: Path, png_path: Path) -> bool:
 
 
 def _render_with_matplotlib(dot_source: str, png_path: Path, title: str) -> None:
+    from common.mpl_backend import configure
+
+    configure()
     import matplotlib.pyplot as plt
 
     labels, shapes, children = _parse_dot(dot_source)

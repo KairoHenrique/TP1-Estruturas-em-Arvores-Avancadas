@@ -233,34 +233,33 @@ Nenhuma estrutura **domina**. Prefixo de strings → Patricia (espaço) ou Trie 
 
 ## Instalação e configuração
 
-**Pré-requisitos:** Python 3.12+ e as bibliotecas de `requirements.txt`. Opcional: [Graphviz](https://graphviz.org/download/) no sistema (`dot`) para renderizar PNG via binário; sem ele, as árvores saem em matplotlib a partir do DOT.
+Portátil em **Linux** e Windows: caminhos com `pathlib`, arquivos em UTF-8 e matplotlib no backend **Agg** (não precisa de display/Tk). No Linux use `python3` (em muitos sistemas `python` não existe).
+
+**Pré-requisitos:** Python 3.10+ e as bibliotecas de `requirements.txt`. Opcional: Graphviz no sistema (`dot`) para PNG via binário; sem ele, as árvores saem em matplotlib.
 
 ```bash
-# 1. Clonar o repositório
 git clone https://github.com/KairoHenrique/TP1-Estruturas-em-Arvores-Avancadas.git
 cd TP1-Estruturas-em-Arvores-Avancadas
 
-# 2. Dependências
-pip install -r requirements.txt
+python3 -m pip install -r requirements.txt
+# opcional no Ubuntu/Debian: sudo apt install graphviz
 
-# 3. Corretude
-python experiments/sanity.py
+python3 experiments/sanity.py
+python3 demos/run_all_demos.py
+python3 experiments/runner.py
 
-# 4. Figuras didáticas (três estados por estrutura)
-python demos/run_all_demos.py
-
-# 5. Bateria experimental (CSV + gráficos)
-python experiments/runner.py
+# atalho Linux:
+# chmod +x run.sh && ./run.sh
 ```
 
 ### Teste rápido (checklist)
 
 | Passo | Comando / arquivo | Resultado esperado |
 |-------|-------------------|--------------------|
-| Dependências | `pip install -r requirements.txt` | `matplotlib` (e `graphviz` opcional) |
-| Sanity | `python experiments/sanity.py` | `Sanity: todas as estruturas passaram.` |
-| Demos | `python demos/run_all_demos.py` | PNGs em `output/figures/` |
-| Experimentos | `python experiments/runner.py` | `output/experiments/resultados.csv` + gráficos |
+| Dependências | `python3 -m pip install -r requirements.txt` | `matplotlib` (e `graphviz` opcional) |
+| Sanity | `python3 experiments/sanity.py` | `Sanity: todas as estruturas passaram.` |
+| Demos | `python3 demos/run_all_demos.py` | PNGs em `output/figures/` |
+| Experimentos | `python3 experiments/runner.py` | `output/experiments/resultados.csv` + gráficos |
 
 **Saídas** (regeneradas a cada execução; exemplos já versionados):
 
@@ -271,13 +270,25 @@ python experiments/runner.py
 
 ## Ambiente de teste
 
+Dois computadores: o desktop gerou o CSV versionado; o notebook valida o mesmo código em Linux.
+
+**Desktop (medições do CSV)**
+
 - **Processador:** AMD Ryzen 7 5700X (8 núcleos / 16 *threads*)
 - **Memória RAM:** 32 GB
 - **Sistema operacional:** Microsoft Windows 11 Pro (build 26200)
 - **Interpretador:** Python 3.12.10
 - **Medição:** `time.perf_counter`, semente `20260919`, uma corrida completa da bateria (~24 s neste ambiente)
 
-> Execuções isoladas variam com processos em segundo plano; os valores do CSV são a referência deste repositório. Rode `python experiments/runner.py` de novo para reproduzir na sua máquina.
+**Notebook**
+
+- **Processador:** 12th Gen Intel® Core™ i7-1255U
+- **Memória RAM:** 40 GB DDR4 3200 MHz
+- **Sistema operacional:** Debian GNU/Linux 13
+- **Interpretador:** Python 3 (`python3`)
+- **Execução:** `./run.sh` ou `python3 experiments/sanity.py`, `demos/run_all_demos.py` e `experiments/runner.py`
+
+> Execuções isoladas variam com processos em segundo plano; os valores do CSV são a referência deste repositório. Rode `python3 experiments/runner.py` de novo para reproduzir na sua máquina (Linux ou Windows).
 
 ## Recursos utilizados
 

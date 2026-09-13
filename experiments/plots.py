@@ -9,6 +9,9 @@ from typing import Any
 
 
 def plot_results(csv_path: Path, output_dir: Path) -> None:
+    from common.mpl_backend import configure
+
+    configure()
     import matplotlib.pyplot as plt
 
     rows = _read_csv(csv_path)

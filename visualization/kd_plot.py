@@ -15,6 +15,9 @@ def plot_kd_tree(
     nearest: Point | None = None,
     bounds: tuple[float, float, float, float] = (0.0, 10.0, 0.0, 10.0),
 ) -> Path:
+    from common.mpl_backend import configure
+
+    configure()
     import matplotlib.pyplot as plt
 
     output_path = Path(output_path)
