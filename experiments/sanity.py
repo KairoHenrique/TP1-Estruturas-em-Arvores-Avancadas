@@ -40,6 +40,8 @@ def test_trie() -> None:
     assert tree.delete("carro")
     assert not tree.search("carro")
     assert tree.search("carta") is False
+    assert not tree.delete("ausente")
+    assert tree.search("") is False
     assert len(tree) == 3
 
 
@@ -56,6 +58,7 @@ def test_patricia() -> None:
     assert not tree.search("caso")
     assert tree.search("casa")
     assert tree.starts_with("ca")
+    assert not tree.delete("ausente")
     remaining = set(tree.words_with_prefix(""))
     assert remaining == {"casa", "cama", "carro"}
 
@@ -68,6 +71,7 @@ def test_splay() -> None:
     assert tree.root is not None and tree.root.key == 1
     assert tree.delete(7)
     assert not tree.search(7)
+    assert not tree.delete(99)
     assert not tree.insert(3)
     assert len(tree) == 9
 
@@ -80,6 +84,7 @@ def test_treap() -> None:
     assert not tree.search(6)
     assert tree.delete(8)
     assert not tree.search(8)
+    assert not tree.delete(6)
     assert _is_bst(tree.root) and _is_heap(tree.root)
     assert len(tree) == 6
 
@@ -96,6 +101,7 @@ def test_kdtree() -> None:
     assert (2.0, 3.0) in found and (5.0, 4.0) in found
     assert tree.delete((5.0, 4.0))
     assert not tree.search((5.0, 4.0))
+    assert not tree.delete((0.0, 0.0))
     assert tree.nearest((5.0, 4.0)) != (5.0, 4.0)
 
 

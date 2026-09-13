@@ -41,9 +41,9 @@ As estruturas **não competem no mesmo tipo de dado**. A bateria respeita isso:
 
 | Grupo | Quem entra | O que se mede |
 |-------|------------|---------------|
-| Strings | Trie vs Patricia | inserção, busca, prefixo, nós, memória |
+| Strings | Trie vs Patricia | inserção, busca, prefixo, remoção, nós, memória |
 | Ordenáveis | Splay, Treap, BST, AVL | aleatório, ordenado, Zipf, localidade |
-| Espacial | KD-Tree vs força bruta | NN 2D/3D e range query |
+| Espacial | KD-Tree vs força bruta | inserção, NN 2D/3D, range e remoção |
 
 n em {1000, 5000, 10000}, semente `20260919`.
 
@@ -161,7 +161,7 @@ Instrumentação com `time.perf_counter` + contadores internos. Valores de [`out
 
 ### Grupo strings — Trie vs Patricia
 
-Palavras sintéticas com prefixos compartilhados (`pre`, `pro`, `par`, … + sufixo aleatório).
+Palavras sintéticas com prefixos compartilhados (`pre`, `pro`, `par`, … + sufixo aleatório). Mede inserção, busca, prefixo e remoção de $n/5$ palavras.
 
 ![Tempo de inserção e busca em strings](output/experiments/strings_tempo.png)
 

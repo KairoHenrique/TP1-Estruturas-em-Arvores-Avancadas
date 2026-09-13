@@ -91,6 +91,19 @@ def run_string_experiments(rng: random.Random) -> list[dict[str, Any]]:
                     tree,
                 )
             )
+            delete_words = words[: size // 5]
+            rows.append(
+                _measure(
+                    name,
+                    "strings",
+                    size,
+                    "prefixos_compartilhados",
+                    "delete",
+                    metrics,
+                    lambda tree=tree, delete_words=delete_words: _delete_all(tree, delete_words),
+                    tree,
+                )
+            )
     return rows
 
 
@@ -240,6 +253,19 @@ def run_kdtree_experiments(rng: random.Random) -> list[dict[str, Any]]:
                     "range",
                     metrics,
                     lambda tree=tree, low=low, high=high: tree.range_search(low, high),
+                    tree,
+                )
+            )
+            delete_points = points[: size // 5]
+            rows.append(
+                _measure(
+                    "KDTree",
+                    "espacial",
+                    size,
+                    pattern,
+                    "delete",
+                    metrics,
+                    lambda tree=tree, delete_points=delete_points: _delete_all(tree, delete_points),
                     tree,
                 )
             )
