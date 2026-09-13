@@ -1,43 +1,43 @@
 # Estruturas em Árvores Avançadas
 
-[![status](https://img.shields.io/badge/status-concluído-success)](https://github.com/KairoHenrique)
+[![status](https://img.shields.io/badge/status-concluído-success)](https://github.com/KairoHenrique/TP1-Estruturas-em-Arvores-Avancadas)
 [![Python](https://img.shields.io/badge/Python-3.12-3776AB?logo=python&logoColor=white)](https://www.python.org/)
 [![AEDS II](https://img.shields.io/badge/AEDS%20II-TP%20Individual%20I-0B3D91)](https://github.com/KairoHenrique/TP1-Estruturas-em-Arvores-Avancadas)
 [![modalidade](https://img.shields.io/badge/modalidade-individual-important)](https://github.com/KairoHenrique)
+[![relatório](https://img.shields.io/badge/relatório-PDF-red)](report/Relatorio.pdf)
 [![GitHub](https://img.shields.io/badge/GitHub-KairoHenrique-181717?logo=github)](https://github.com/KairoHenrique)
+
+Relatório técnico (8–12 páginas): [`report/Relatorio.pdf`](report/Relatorio.pdf).
 
 ## Introdução
 
-Árvores binárias de busca (BST) e árvores AVL resolvem o dicionário clássico sobre um universo **totalmente ordenado**. Na prática, porém, o dado nem sempre é um inteiro isolado: conjuntos de strings compartilham prefixos, sequências de acesso exibem localidade temporal e aplicações geométricas consultam vizinhança em R^k. Nesses recortes, BST e AVL são corretas, mas não exploram a estrutura da chave.
+BST e AVL resolvem o dicionário clássico sobre um universo **totalmente ordenado**. Na prática o dado nem sempre é um inteiro isolado: strings compartilham prefixos, acessos têm localidade temporal e consultas geométricas pedem vizinhança em R^k. Nesses recortes, BST e AVL são corretas, mas não exploram a estrutura da chave.
 
-Este trabalho implementa, visualiza e compara **cinco estruturas hierárquicas especializadas** — Trie, Patricia (radix compacta), Splay, Treap e KD-Tree — com baselines BST e AVL só no grupo de chaves ordenáveis.
+Este trabalho implementa, visualiza e compara **cinco árvores especializadas** — Trie, Patricia (radix compacta), Splay, Treap e KD-Tree — com baselines BST e AVL só no grupo de chaves ordenáveis.
 
 ## Descrição do projeto
 
-Cada estrutura foi estudada e implementada com as operações fundamentais (inserção, busca, remoção) e, quando couber, operação específica. O repositório integra:
+Trabalho Prático Individual I de *Algoritmos e Estruturas de Dados II*. Cada estrutura tem inserção, busca, remoção e, quando couber, operação específica.
 
-1. **Fundamentação e invariantes** de cada árvore, contrastadas com BST/AVL.
-2. **Código modular em Python**, instrumentado (`comparações`, `rotações`, nós, tempo).
-3. **Rastreamento visual** em três estados por estrutura (inserção, mecanismo típico, remoção).
-4. **Experimentos** em três universos de chave que **não são misturáveis**.
-5. **Relatório comparativo** consolidando teoria, implementação e medição.
-
-Trabalho Prático Individual I da disciplina *Algoritmos e Estruturas de Dados II*.
+1. Fundamentação e invariantes, contrastadas com BST/AVL.
+2. Código modular em Python, instrumentado (comparações, rotações, nós, tempo).
+3. Três estados visuais por estrutura, gerados pelo próprio `to_dot()`.
+4. Experimentos em **três universos de chave** que não são misturáveis.
+5. Relatório comparativo em [`report/Relatorio.pdf`](report/Relatorio.pdf).
 
 ### Estruturas implementadas
 
 | Estrutura | Universo | Operação específica | Invariante |
 |-----------|----------|---------------------|------------|
 | **Trie** | strings | `starts_with` / listar por prefixo | um caractere por aresta; marca de fim de palavra |
-| **Patricia** | strings | busca/enumeração por prefixo compacto | arestas com *strings*; split no mismatch |
-| **Splay** | chaves ordenáveis | splay (zig / zig-zig / zig-zag) | BST; item acessado sobe à raiz |
+| **Patricia** | strings | busca e enumeração por prefixo compacto | aresta com *string*; split no mismatch |
+| **Splay** | chaves ordenáveis | splay (zig / zig-zig / zig-zag) | BST; o item acessado sobe à raiz |
 | **Treap** | chaves ordenáveis | prioridade aleatória + rotações | BST nas chaves e heap nas prioridades |
-| **KD-Tree** | pontos k-D | vizinho mais próximo e range 2D | eixo alternado; partição espacial |
-| **BST / AVL** | chaves ordenáveis | — / fator de balanceamento | baseline da Seção 4 e 5 do enunciado |
+| **KD-Tree** | pontos k-D | vizinho mais próximo e range | eixo alternado; partição espacial |
+| **BST** | chaves ordenáveis | — | ordem simétrica; sem rebalanceamento |
+| **AVL** | chaves ordenáveis | fator de balanceamento | alturas das subárvores diferem no máximo 1 |
 
 ### Três grupos experimentais
-
-As estruturas **não competem no mesmo tipo de dado**. A bateria respeita isso:
 
 | Grupo | Quem entra | O que se mede |
 |-------|------------|---------------|
@@ -49,7 +49,7 @@ n em {1000, 5000, 10000}, semente `20260919`.
 
 ## Estrutura geral do projeto
 
-Cada pasta tem **um papel claro**: código em `src/`, figuras didáticas em `output/figures/`, medição em `experiments/` e o PDF do relatório em `report/`.
+Cada pasta tem um papel claro: código em `src/`, figuras didáticas em `output/figures/`, medição em `experiments/` e o PDF em `report/`.
 
 ```
 TP1-Estruturas-em-Arvores-Avancadas/
@@ -66,7 +66,7 @@ TP1-Estruturas-em-Arvores-Avancadas/
 │   ├── treap/treap.py
 │   ├── kdtree/kdtree.py
 │   └── baselines/                 # BST e AVL (só comparação)
-├── visualization/                 # DOT + PNG das árvores; plot 2D da KD-Tree
+├── visualization/                 # DOT → PNG; plot 2D da KD-Tree
 ├── demos/                         # três estados visuais por estrutura
 │   └── run_all_demos.py
 ├── experiments/
@@ -76,44 +76,39 @@ TP1-Estruturas-em-Arvores-Avancadas/
 │   └── plots.py
 ├── output/
 │   ├── figures/                   # PNGs e DOTs dos demos
-│   └── experiments/               # resultados.csv + gráficos matplotlib
+│   └── experiments/               # resultados.csv + gráficos
 └── report/
-    └── Relatorio.pdf              # relatório
+    └── Relatorio.pdf
 ```
-
-## Implementação
-
-O fluxo do repositório é uma pipeline de **estudo → código → visualização → medição**:
 
 ```mermaid
 flowchart TD
     A["Enunciado do TP I"] --> B["src/ cinco árvores + BST/AVL"]
-    B --> C["demos/ três estados por estrutura"]
-    C --> D["output/figures PNG + DOT"]
+    B --> C["demos/ três estados"]
+    C --> D["output/figures"]
     B --> E["experiments/runner.py"]
-    E --> F["output/experiments CSV + gráficos"]
+    E --> F["CSV + gráficos"]
     D --> G["análise comparativa"]
     F --> G
 ```
 
-**O que cada módulo faz, em detalhe:**
+API uniforme: `insert`, `search`, `delete`, `to_dot()`, mais a operação específica de cada árvore. Métricas vêm de um objeto `Metrics` injetado (sem globais).
 
-1. **Trie** — um caractere por aresta; inserção cria o caminho; remoção desmarca o terminal e poda ramos inúteis; `words_with_prefix` enumera o subconjunto.
-2. **Patricia** — radix compacta: rótulo de aresta é uma *string*. Inserção calcula o prefixo comum e **divide** a aresta no primeiro mismatch; remoção pode **recompactar** um caminho unário.
-3. **Splay** — splay bottom-up recursivo. Inserção splaya e recorta a árvore na nova raiz. Remoção splaya o alvo e junta a subárvore esquerda (máximo) com a direita.
-4. **Treap** — inserção BST seguida de rotações enquanto a prioridade do filho viola o heap máximo. Remoção rotaciona o nó para baixo até extrai-lo. RNG com semente **só** nos experimentos.
-5. **KD-Tree** — inserção pelo eixo `depth mod k`; NN com poda da bola; range com poda por intervalo; remoção pelo mínimo da dimensão de corte (Bentley). Plot 2D dos hiperplanos em `visualization/kd_plot.py`.
-6. **Métricas** — objeto `Metrics` injetado (sem globais): comparações, rotações, nós criados/removidos e `perf_counter`.
+## Implementação
 
-API uniforme: `insert`, `search`, `delete`, `to_dot()`, mais a operação específica de cada árvore.
+1. **Trie** — um caractere por aresta; remoção desmarca o terminal e poda ramos inúteis; `words_with_prefix` enumera o subconjunto.
+2. **Patricia** — rótulo da aresta é uma *string*. Inserção **divide** no mismatch; remoção pode **recompactar** caminho unário.
+3. **Splay** — bottom-up. Inserção splaya e recorta na nova raiz. Remoção splaya o alvo e junta a subárvore esquerda (máximo) com a direita.
+4. **Treap** — inserção BST + rotações até o heap máximo. Remoção rotaciona o nó até extraí-lo. RNG com semente **só** nos experimentos.
+5. **KD-Tree** — eixo `depth mod k`; NN com poda da bola; range com poda por intervalo; remoção pelo mínimo da dimensão de corte.
 
-## Demonstração e rastreamento visual
+## Demonstração visual
 
-Os exemplos são pequenos de propósito: cada figura isola **um** mecanismo. Círculos duplos marcam fim de palavra. Figuras geradas por `python demos/run_all_demos.py` (matplotlib a partir do DOT exportado pela própria estrutura — **não** são imagens sintéticas de modelo generativo).
+Exemplos pequenos: cada figura isola **um** mecanismo. Círculos duplos marcam fim de palavra. Geradas por `python3 demos/run_all_demos.py` a partir do DOT da própria estrutura — não são imagens sintéticas.
 
-### Trie — compartilhamento de prefixo
+### Trie — prefixo compartilhado
 
-`casa`, `caso`, `cama`, `carro` compartilham `c-a`. A Trie **não** compacta o caminho `c-a-s-a`.
+`casa`, `caso`, `cama`, `carro` compartilham `c-a`. A Trie **não** compacta `c-a-s-a`.
 
 ![Trie após inserções](output/figures/trie/01_apos_insercoes.png)
 
@@ -121,47 +116,47 @@ Os exemplos são pequenos de propósito: cada figura isola **um** mecanismo. Cí
 
 ![Trie bifurcação do prefixo car](output/figures/trie/02_bifurcacao_prefixo.png)
 
-### Patricia — split de prefixo
+### Patricia — split
 
-Inserir `casa` e depois `caso` força o split em aresta `cas` + ramos `a` e `o`. Esse é o ponto que a Trie não mostra.
+Inserir `caso` sobre `casa` divide a aresta em `cas` + ramos `a` e `o`.
 
 ![Patricia split do prefixo cas](output/figures/patricia/01_apos_insercoes.png)
 
-Novas chaves compactam e redividem (`ca` + `s` / `m` / `rro`):
+Novas chaves redividem (`ca` + `s` / `m` / `rro`):
 
 ![Patricia divisão de prefixos](output/figures/patricia/02_divisao_de_prefixos.png)
 
 ### Splay — o acessado vai à raiz
 
-Inserções `10, 20, 30, 40, 50` deixam o último valor na raiz. A busca de `10` aplica zig-zig na cadeia e coloca `10` no topo.
+Inserções `10, 20, 30, 40, 50` deixam o último valor na raiz. A busca de `10` aplica zig-zig e coloca `10` no topo.
 
 ![Splay após busca de 10](output/figures/splay/02_apos_splay_do_10.png)
 
 ### Treap — prioridade alta sobe
 
-`25` entra com prioridade 0,90 e sobe à raiz **sem** quebrar a ordem BST das chaves.
+`25` entra com prioridade 0,90 e sobe à raiz **sem** quebrar a ordem BST.
 
 ![Treap prioridade alta sobe à raiz](output/figures/treap/02_prioridade_alta_sobe.png)
 
-### KD-Tree — partição espacial e vizinho mais próximo
+### KD-Tree — partição e vizinho mais próximo
 
-Cortes verticais/horizontais alternados no plano. Depois da remoção de `(8, 3)`, a consulta `(6,5 ; 7,5)` encontra `(7, 8)`.
+Cortes verticais e horizontais. Depois de remover `(8, 3)`, a consulta `(6,5; 7,5)` encontra `(7, 8)`.
 
 ![KD-Tree partição espacial inicial](output/figures/kdtree/01_apos_insercoes_plano.png)
 
 ![KD-Tree vizinho mais próximo](output/figures/kdtree/03_apos_remocao_nn.png)
 
-Demais estados (remoção da Trie/Patricia/Splay/Treap e diagramas em árvore da KD-Tree) estão em `output/figures/<estrutura>/`.
+Os demais estados (remoção da Trie/Patricia/Splay/Treap e a árvore da KD-Tree) estão em `output/figures/<estrutura>/`.
 
 ## Experimentos e resultados
 
-Instrumentação com `time.perf_counter` + contadores internos. Valores de [`output/experiments/resultados.csv`](output/experiments/resultados.csv), semente `20260919`. Regenerar com `python experiments/runner.py`.
+Fonte: [`output/experiments/resultados.csv`](output/experiments/resultados.csv). Semente `20260919`. Tempos com `time.perf_counter` no desktop (seção Ambiente). Regenerar: `python3 experiments/runner.py`.
 
-> BST e Splay com inserção **ordenada** em n = 10.000 foram omitidas: a árvore degenera, o Θ(n²) e a profundidade de recursão distorcem a escala sem acrescentar informação além de n = 5.000.
+> BST e Splay com inserção **ordenada** em n = 10.000 foram omitidas: a degeneração Θ(n²) e a profundidade de recursão distorcem a escala; n = 5.000 já demonstra o colapso.
 
 ### Grupo strings — Trie vs Patricia
 
-Palavras sintéticas com prefixos compartilhados (`pre`, `pro`, `par`, … + sufixo aleatório). Mede inserção, busca, prefixo e remoção de $n/5$ palavras.
+Palavras com prefixos compartilhados (`pre`, `pro`, `par`, … + sufixo). Mede inserção, busca, prefixo e remoção de n/5 palavras.
 
 ![Tempo de inserção e busca em strings](output/experiments/strings_tempo.png)
 
@@ -169,11 +164,13 @@ Palavras sintéticas com prefixos compartilhados (`pre`, `pro`, `par`, … + suf
 
 | n | Trie (nós) | Patricia (nós) | Trie insert | Patricia insert | Trie search | Patricia search |
 |----:|----------:|---------------:|------------:|----------------:|------------:|----------------:|
-| 1 000 | 5 754 | 1 312 | 0,005 s | 0,003 s | 0,001 s | 0,004 s |
-| 5 000 | 26 288 | 6 450 | 0,018 s | 0,017 s | 0,006 s | 0,016 s |
-| 10 000 | **50 087** | **13 391** | 0,043 s | 0,035 s | 0,012 s | 0,036 s |
+| 1 000 | 5 754 | 1 312 | 0,004 s | 0,002 s | 0,001 s | 0,003 s |
+| 5 000 | 26 288 | 6 450 | 0,014 s | 0,014 s | 0,005 s | 0,014 s |
+| 10 000 | **50 087** | **13 391** | 0,033 s | 0,024 s | 0,010 s | 0,030 s |
 
-**Discussão.** Em n = 10.000 a Patricia usa cerca de **3,7× menos nós** (memória estimada 2,6 MB vs 10,5 MB). A inserção fica na mesma ordem O(nL). A busca da Patricia é *mais lenta*: cada nível compara um rótulo inteiro. Isso confirma a análise: ganho **espacial**, não assintótico em tempo.
+Em n = 10.000 a Patricia usa cerca de **3,7× menos nós** (memória estimada 2,5 MB vs 10,0 MB). A inserção fica na mesma ordem O(nL). A busca da Patricia é *mais lenta*: cada nível compara um rótulo inteiro. Ganho **espacial**, não assintótico em tempo.
+
+Remoção de n/5 palavras, n = 10.000: Trie **0,005 s**; Patricia **4,84 s**. A compactação após cada delete reconstrói caminhos unários e vira o custo dominante — o espaço menor não sai de graça na remoção.
 
 ### Grupo ordenável — Splay, Treap, BST, AVL
 
@@ -185,14 +182,14 @@ Inserção **aleatória**, n = 10.000:
 
 | Estrutura | Tempo | Rotações | Leitura |
 |-----------|------:|---------:|---------|
-| BST | 0,042 s | 0 | barata porque não rebalanceia |
-| Treap | 0,055 s | 20 293 | heap nas prioridades |
-| Splay | 0,086 s | 193 320 | paga cada acesso com rotação |
-| AVL | 0,100 s | 6 956 | pior caso rígido O(log n) |
+| BST | 0,041 s | 0 | barata porque não rebalanceia |
+| Treap | 0,051 s | 20 293 | heap nas prioridades |
+| Splay | 0,081 s | 193 320 | paga cada acesso com rotação |
+| AVL | 0,089 s | 6 956 | pior caso rígido O(log n) |
 
-Inserção **ordenada**, n = 5.000: BST **2,58 s** e **25 milhões** de comparações (Θ(n²)); AVL 0,041 s; Treap 0,015 s. A Splay *insere* em 0,004 s (cada novo máximo vira raiz em O(1)), mas a busca seguinte custa 0,040 s.
+Inserção **ordenada**, n = 5.000: BST **2,38 s** e **25 milhões** de comparações (Θ(n²)); AVL 0,041 s; Treap 0,015 s. A Splay *insere* em 0,004 s (cada novo máximo vira raiz em O(1)), mas a busca seguinte custa 0,035 s.
 
-Busca Zipf vs uniforme na Splay (n = 10.000): **0,036 s / 171 k comparações** contra **0,074 s / 333 k**. Localidade reduz trabalho, como o modelo amortizado prevê.
+Busca Zipf vs uniforme na Splay (n = 10.000): **0,033 s / 171 k comparações** contra **0,067 s / 333 k**. Localidade reduz trabalho, como o modelo amortizado prevê.
 
 ### Grupo espacial — KD-Tree vs força bruta
 
@@ -202,15 +199,15 @@ Busca Zipf vs uniforme na Splay (n = 10.000): **0,036 s / 171 k comparações** 
 
 | n | KD-Tree 2D | Força bruta 2D | KD-Tree 3D | Força bruta 3D |
 |----:|-----------:|---------------:|-----------:|---------------:|
-| 1 000 | 0,005 s | 0,26 s | 0,005 s | 0,33 s |
-| 5 000 | 0,006 s | 1,34 s | 0,007 s | 1,67 s |
-| 10 000 | **0,006 s** | **3,50 s** | 0,014 s | 4,01 s |
+| 1 000 | 0,005 s | 0,22 s | 0,006 s | 0,27 s |
+| 5 000 | 0,006 s | 1,16 s | 0,006 s | 1,38 s |
+| 10 000 | **0,006 s** | **2,37 s** | 0,007 s | 2,72 s |
 
-**Discussão.** Em 2D, n = 10.000, a KD-Tree sai cerca de **580×** mais rápida que a varredura linear. Em 3D o gap permanece, um pouco menor em vantagem relativa — coerente com a perda de poda quando k cresce. A construção é incremental (não mediana); mesmo assim a poda funcionou neste conjunto uniforme.
+Em 2D, n = 10.000, a KD-Tree fica cerca de **420×** mais rápida que a varredura linear. Em 3D o gap permanece, um pouco menor em vantagem relativa — coerente com a perda de poda quando k cresce. A árvore é incremental (não reconstruída pelo mediano).
 
 ## Análise assintótica
 
-Sejam n o número de chaves, L o comprimento da string, k a dimensão e m o número de pontos reportados numa range query. “Esperado” refere-se a prioridade/ordem aleatória.
+n = número de chaves, L = comprimento da string, k = dimensão, m = pontos reportados numa range query. “Esperado” = prioridade ou ordem aleatória.
 
 | Operação | Trie | Patricia | Splay | Treap | KD-Tree | BST | AVL |
 |----------|------|----------|-------|-------|---------|-----|-----|
@@ -221,26 +218,25 @@ Sejam n o número de chaves, L o comprimento da string, k a dimensão e m o núm
 | Remoção (médio) | O(L) | O(L) | O(log n) amort. | O(log n) esp. | O(log n) típico | O(log n) | O(log n) |
 | Remoção (pior) | O(L) | O(L) | O(n) | O(n) | O(n) | O(n) | O(log n) |
 | Construção | O(nL) | O(nL) | O(n log n) amort. | O(n log n) esp. | O(n log n) méd. | O(n log n) méd. | O(n log n) |
-| Específica | prefixo O(L+m) | prefixo O(L+m) | splay O(altura) | — | NN / range | — | rotação O(1) |
+| Específica | prefixo O(L+m) | prefixo O(L+m) | splay O(altura) | heap / rotação | NN / range | — | rotação O(1) |
 | Espaço | O(nL) pior | O(n) nós típico | O(n) | O(n) | O(n) | O(n) | O(n) |
 
-**Por que esses custos.** Trie: um símbolo, uma descida. Patricia: ainda O(L) em caracteres, porém **menos nós**. Splay: sem limite de altura; o potencial de Sleator–Tarjan dá O(log n) amortizado. Treap: mesma distribuição de uma BST aleatória. KD-Tree: NN melhor que linear no caso típico 2D; degenera em Θ(n) em configurações patológicas. BST degenera na inserção ordenada; AVL restaura \|hL − hR\| ≤ 1 com O(1) rotações por inserção.
+Trie: um símbolo, uma descida. Patricia: ainda O(L) em caracteres, com **menos nós**. Splay: sem limite de altura; o potencial de Sleator–Tarjan dá O(log n) amortizado. Treap: mesma distribuição de uma BST aleatória. KD-Tree: NN melhor que linear no 2D típico; degenera em Θ(n) em configurações ruins. BST degenera na inserção ordenada; AVL restaura o fator de altura com O(1) rotações por inserção.
 
 Nenhuma estrutura **domina**. Prefixo de strings → Patricia (espaço) ou Trie (simplicidade). Pior caso rígido → AVL. Carga enviesada → Splay. Balanceamento probabilístico simples → Treap. Pontos em R² / R³ → KD-Tree.
 
-## Análise e conclusões
+## Conclusões
 
-- Trie e Patricia exploram **prefixos**; Splay, o **histórico de acesso**; Treap, a **aleatoriedade**; KD-Tree, a **geometria**. BST/AVL exploram ordem total unidimensional.
-- Onde o modelo assintótico distingue pior e médio (BST vs AVL, brute force vs KD-Tree), o experimento reproduz a folga. Onde só mudam constantes (Trie vs Patricia em O(L)), o gráfico de **nós** informa mais que o de tempo.
-- Patricia (split no meio da aresta + compactação) e KD-Tree (remoção + poda de NN) exigiram mais cuidado de corretude; Trie e Treap, menos.
-- `sys.getsizeof` nos nós é **comparativo**, não absoluto: subestima objetos aninhados do interpretador.
-- Melhorias naturais: KD-Tree reconstruída pelo mediano; Patricia bit a bit; treap implícita; alfabeto compacto na Trie ASCII.
+- Trie e Patricia exploram **prefixos**; Splay, o **histórico**; Treap, a **aleatoriedade**; KD-Tree, a **geometria**. BST/AVL exploram ordem total unidimensional.
+- Onde o modelo distingue pior e médio (BST vs AVL, força bruta vs KD-Tree), o experimento reproduz a folga. Onde só mudam constantes (Trie vs Patricia em O(L)), o gráfico de **nós** informa mais que o de tempo.
+- Patricia (split/compactação) e KD-Tree (remoção + poda de NN) exigiram mais cuidado; Trie e Treap, menos.
+- `sys.getsizeof` nos nós é **comparativo**, não absoluto.
 
-## Instalação e configuração
+## Instalação e execução
 
-Portátil em **Linux** e Windows: caminhos com `pathlib`, arquivos em UTF-8 e matplotlib no backend **Agg** (não precisa de display/Tk). No Linux use `python3` (em muitos sistemas `python` não existe).
+Portátil em **Linux** e Windows (`pathlib`, UTF-8, matplotlib **Agg** — sem tela). No Linux use `python3`.
 
-**Pré-requisitos:** Python 3.10+ e as bibliotecas de `requirements.txt`. Opcional: Graphviz no sistema (`dot`) para PNG via binário; sem ele, as árvores saem em matplotlib.
+**Pré-requisitos:** Python 3.10+ e `requirements.txt`. Opcional: Graphviz (`dot`) no sistema; sem ele, as árvores saem em matplotlib.
 
 ```bash
 git clone https://github.com/KairoHenrique/TP1-Estruturas-em-Arvores-Avancadas.git
@@ -257,16 +253,15 @@ python3 experiments/runner.py
 # chmod +x run.sh && ./run.sh
 ```
 
-### Teste rápido (checklist)
-
-| Passo | Comando / arquivo | Resultado esperado |
-|-------|-------------------|--------------------|
-| Dependências | `python3 -m pip install -r requirements.txt` | `matplotlib` (e `graphviz` opcional) |
+| Passo | Comando | Resultado esperado |
+|-------|---------|--------------------|
+| Dependências | `python3 -m pip install -r requirements.txt` | `matplotlib` |
 | Sanity | `python3 experiments/sanity.py` | `Sanity: todas as estruturas passaram.` |
 | Demos | `python3 demos/run_all_demos.py` | PNGs em `output/figures/` |
-| Experimentos | `python3 experiments/runner.py` | `output/experiments/resultados.csv` + gráficos |
+| Experimentos | `python3 experiments/runner.py` | CSV + gráficos em `output/experiments/` |
+| Relatório | [`report/Relatorio.pdf`](report/Relatorio.pdf) | artigo 8–12 páginas |
 
-**Saídas** (regeneradas a cada execução; exemplos já versionados):
+**Saídas** (exemplos já versionados; regeneram a cada execução):
 
 - `output/figures/<estrutura>/*.png` — rastreamento visual
 - `output/figures/<estrutura>/*.dot` — fonte Graphviz
@@ -275,7 +270,7 @@ python3 experiments/runner.py
 
 ## Ambiente de teste
 
-Dois computadores: o desktop gerou o CSV versionado; o notebook valida o mesmo código em Linux.
+O desktop gerou o CSV versionado; o notebook valida o mesmo código em Linux.
 
 **Desktop (medições do CSV)**
 
@@ -283,7 +278,7 @@ Dois computadores: o desktop gerou o CSV versionado; o notebook valida o mesmo c
 - **Memória RAM:** 32 GB
 - **Sistema operacional:** Microsoft Windows 11 Pro (build 26200)
 - **Interpretador:** Python 3.12.10
-- **Medição:** `time.perf_counter`, semente `20260919`, uma corrida completa da bateria (~24 s neste ambiente)
+- **Medição:** `time.perf_counter`, semente `20260919`, bateria completa (~26 s neste ambiente)
 
 **Notebook**
 
@@ -291,15 +286,15 @@ Dois computadores: o desktop gerou o CSV versionado; o notebook valida o mesmo c
 - **Memória RAM:** 40 GB DDR4 3200 MHz
 - **Sistema operacional:** Debian GNU/Linux 13
 - **Interpretador:** Python 3 (`python3`)
-- **Execução:** `./run.sh` ou `python3 experiments/sanity.py`, `demos/run_all_demos.py` e `experiments/runner.py`
+- **Execução:** `./run.sh`
 
-> Execuções isoladas variam com processos em segundo plano; os valores do CSV são a referência deste repositório. Rode `python3 experiments/runner.py` de novo para reproduzir na sua máquina (Linux ou Windows).
+Tempos isolados variam com a máquina; o CSV do repositório é a referência.
 
-## Recursos utilizados
+## Recursos
 
-`Python 3.12` · `matplotlib` · DOT / Graphviz (opcional) · `Visual Studio Code` / Cursor
+`Python 3.12` · `matplotlib` · DOT / Graphviz (opcional)
 
-Literatura de apoio (detalhada no relatório): Cormen et al.; Sleator & Tarjan (Splay, 1985); Seidel & Aragon (Treap, 1996); Bentley (KD-Tree, 1975); Morrison (Patricia, 1968); Sedgewick & Wayne (Tries).
+Literatura (detalhada no relatório): Cormen et al.; Sleator & Tarjan (Splay, 1985); Seidel & Aragon (Treap, 1996); Bentley (KD-Tree, 1975); Morrison (Patricia, 1968); Sedgewick & Wayne (Tries).
 
 ## Autor
 
