@@ -1,0 +1,10 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+
+# Relatório: só o PDF entra no Git, quando houver.
+report/*
+!report/*.pdf
